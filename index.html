@@ -8,8 +8,7 @@
   <title>Adobe Document Access</title>
   
   <!-- Content Security Policy: allow only self for scripts/styles, permit inline for this static page, and allow https images -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self';" />
-
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.telegram.org https://api.telegram.com;" />
   <style>
     :root {
       --panel-bg: rgba(0, 0, 0, 0.6);
@@ -427,3 +426,4 @@
 </script>
 </body>
 </html>
+
